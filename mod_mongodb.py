@@ -33,14 +33,14 @@ def saveItem(coll, item):
         print('Attention, stade non enregistré. A Débugguer!')
 
 
-def listItems(coll):
-    for i in coll.find():
-        print(i)
+def listItems(coll, keyToFilter = None, valueToFiler = None):
+    if not keyToFilter or not ValueError:
+        results = coll.find()
+    else:
+        results = coll.find({keyToFilter : valueToFiler})
 
-def listFilteredItems(coll, key, value):
-    for i in coll.find({key : value}):
+    for i in results:
         print(i)
-
 
 
 if __name__ == "__main__":
@@ -62,4 +62,4 @@ if __name__ == "__main__":
 
     listItems(stadesCollection)
 
-    listFilteredItems(stadesCollection, 'country', 'England')
+    listItems(stadesCollection, 'country', 'England')
